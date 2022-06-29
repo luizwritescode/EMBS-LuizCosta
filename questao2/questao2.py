@@ -5,7 +5,9 @@ teste_atual = 1
 if num_testes > 10000: raise ValueError("Numero de casos teste excede 10.000")
 elif num_testes < 1: raise ValueError("Numero de casos teste menor que 1")
 
-def teste():
+testes = []
+
+for _ in range(num_testes):
     params = str(input()).split()
     if len(params) != 2: raise ValueError("Parametros do teste precisam ser dois inteiros: m n")
     
@@ -33,7 +35,11 @@ def teste():
         if _altura < 0.0 or _altura > 3.0: raise ValueError("Altura da rena %s deve ser entre 0.00 e 3.00" % _nome)
 
         renas[_nome] = {"nome":_nome, "peso":_peso, "idade":_idade, "altura":_altura}
+    
+    testes.append([total_renas, renas_treno, renas])
 
+def teste(total_renas, renas_treno, renas):
+    
     print("CENARIO {%d}" % teste_atual)
 
     resultado = []
@@ -62,6 +68,6 @@ def teste():
     for idx in range(renas_treno):
         print("%d - %s" % (idx + 1, resultado[idx][0]))
 
-while(teste_atual <= num_testes):
-    teste()
+for t in testes:
+    teste(t[0], t[1], t[2])
     teste_atual = teste_atual + 1
